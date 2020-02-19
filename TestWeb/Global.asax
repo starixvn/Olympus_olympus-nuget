@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Fanex.TicketControl.Website.MvcApplication" Language="C#" %>
