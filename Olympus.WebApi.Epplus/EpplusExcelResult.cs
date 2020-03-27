@@ -21,6 +21,8 @@ namespace Olympus.WebApi.Results
 
         public ExcelPackage ExcelPackage { get; }
 
+        public string FileName { get; set; } = "Excel.xlsx";
+
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
             HttpResponseMessage response;
@@ -36,7 +38,7 @@ namespace Olympus.WebApi.Results
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.ms-excel");
             response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
             {
-                FileName = "Excel.xlsx"
+                FileName = FileName
             };
 
             return Task.FromResult(response);

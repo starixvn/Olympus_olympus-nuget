@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyUnitTests", "MyUnitTests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWeb", "TestWeb\TestWeb.csproj", "{E40C7EE5-0817-4EFD-A9AA-DE52F0B85B30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olympus.Xml", "Olympus.Xml\Olympus.Xml.csproj", "{BBACFE64-D07D-48A3-8004-E99FBDC92058}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{E40C7EE5-0817-4EFD-A9AA-DE52F0B85B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E40C7EE5-0817-4EFD-A9AA-DE52F0B85B30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E40C7EE5-0817-4EFD-A9AA-DE52F0B85B30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBACFE64-D07D-48A3-8004-E99FBDC92058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBACFE64-D07D-48A3-8004-E99FBDC92058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBACFE64-D07D-48A3-8004-E99FBDC92058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBACFE64-D07D-48A3-8004-E99FBDC92058}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
