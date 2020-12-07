@@ -4,13 +4,17 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Olympus.FPSAPI.Client
 {
     public interface FraudServiceWrapper
     {
         Task<List<CustomerDevice>> GetAssociatedCustomers(string host, int custId);
+
         Task<string> GetLatestIP(string host, int custId);
+
+        Task<string> GetCategory(string host, string custId);
     }
 
     public class FraudServiceWrapperImp : FraudServiceWrapper
@@ -47,6 +51,37 @@ namespace Olympus.FPSAPI.Client
                 var result = await response.Content.ReadAsAsync<List<string>>().ConfigureAwait(false);
 
                 return result.FirstOrDefault(ip => ip != "127.0.0.1");
+            }
+        }
+
+        public async Task<string> GetCategory(string host, string custId)
+        {
+            var result = new List<string>();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
+
+                var path = $"{host}/GetCustomerClassification/?custIdList={custId}";
+                var response = await client.GetAsync(path).ConfigureAwait(false);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return string.Empty;
+                }
+
+                var responseData = await response.Content.ReadAsAsync<string>();
+
+                XDocument xdoc = XDocument.Parse(responseData);
+                var elements = xdoc.Descendants("Root").Descendants("CustomerClassification");
+                if (elements.Any())
+                {
+                    foreach (var element in elements)
+                    {
+                        result.Add(element.Attribute("CategoryName").Value);
+                    }
+                }
+
+                return string.Join(", ", result);
             }
         }
     }
