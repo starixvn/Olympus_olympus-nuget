@@ -52,6 +52,8 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\CustomerById.cs" />
+    <Compile Include="Model\CustomerByUsername.cs" />
     <Compile Include="Model\CustomerDevice.cs" />
     <Compile Include="FraudServiceWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

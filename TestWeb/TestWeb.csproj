@@ -291,6 +291,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Olympus.FPSAPI\Olympus.FPSAPI.Client.csproj">
+      <Project>{f01b6b24-0fba-43d9-b121-f6153beb8e19}</Project>
+      <Name>Olympus.FPSAPI.Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Olympus.HttpLogger\Olympus.HttpLogger.csproj">
       <Project>{dcdb6315-699d-4daa-9867-f21940181784}</Project>
       <Name>Olympus.HttpLogger</Name>
