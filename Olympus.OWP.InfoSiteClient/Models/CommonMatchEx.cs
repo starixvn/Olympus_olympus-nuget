@@ -11,6 +11,8 @@ namespace Olympus.OWP.InfoSiteClient.Models
         public Int32 match_id { get; set; }
         // id of source provider
         public Nullable<Int32> website_id { get; set; }
+        // id coverage of source provider
+        public Nullable<Int32> coverage_id { get; set; }
         // is import match (other source should import as info site match then able to create admin site)
         public bool is_import { get; set; }
         // is virtual match (to distinguish soccerway or virtual match/other source)
