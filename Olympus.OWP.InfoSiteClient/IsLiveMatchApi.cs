@@ -5,15 +5,17 @@
     using System.Configuration;
     using System.Linq;
     using System.Net.Http;
+    using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
+    using Olympus.OWP.InfoSiteClient.Models;
 
     public interface IsLiveMatchApi
     {
-        Task<IsLiveSynchronizedResult> SetLiveMatches(IEnumerable<int> liveMatches);
+        Task<IsLiveSynchronizedResult> SetLiveMatches(IEnumerable<(int, int?)> liveMatches);
 
-        Task<IsLiveSynchronizedResult> SetNonLiveMatches(IEnumerable<int> nonLiveMatches);
+        Task<IsLiveSynchronizedResult> SetNonLiveMatches(IEnumerable<(int, int?)> nonLiveMatches);
     }
 
     public class IsLiveMatchApiImp : IsLiveMatchApi
@@ -22,17 +24,19 @@
 
         private static Regex regex = new Regex(@"^(\d+)\:.+$");
 
-        public async Task<IsLiveSynchronizedResult> SetLiveMatches(IEnumerable<int> liveMatches)
+        private const string InvalidChildMatch = "FAILED_UPDATE_CHILD_MATCH";
+
+        public async Task<IsLiveSynchronizedResult> SetLiveMatches(IEnumerable<(int, int?)> liveMatches)
         {
             return await SyncMatches(liveMatches, true);
         }
 
-        public async Task<IsLiveSynchronizedResult> SetNonLiveMatches(IEnumerable<int> nonLiveMatches)
+        public async Task<IsLiveSynchronizedResult> SetNonLiveMatches(IEnumerable<(int, int?)> nonLiveMatches)
         {
             return await SyncMatches(nonLiveMatches, false);
         }
 
-        private async Task<IsLiveSynchronizedResult> SyncMatches(IEnumerable<int> matches, bool isLive)
+        private async Task<IsLiveSynchronizedResult> SyncMatches(IEnumerable<(int, int?)> matches, bool isLive)
         {
             using (var httpClient = new HttpClient())
             {
@@ -40,8 +44,8 @@
                 httpClient.BaseAddress = new Uri(InfoSiteAPI);
                 var path = "api/EventSchedule/setEventsLive";
 
-                var keyValuePairs = GetKeyValuePairOfMatch(matches, isLive);
-                var content = new FormUrlEncodedContent(keyValuePairs);
+                var model = GetKeyValuePairOfMatch(matches, isLive);
+                var content = new StringContent(model, Encoding.UTF8, "application/json");
 
                 var response = await httpClient.PostAsync(path, content);
                 var responseText = await response.Content.ReadAsStringAsync();
@@ -60,33 +64,67 @@
             }
         }
 
-        private List<KeyValuePair<string, string>> GetKeyValuePairOfMatch(IEnumerable<int> matches, bool isLive)
+        private string GetKeyValuePairOfMatch(IEnumerable<(int, int?)> matches, bool isLive)
         {
-            var result = new List<KeyValuePair<string, string>>();
-            var index = 0;
-            foreach (var matchId in matches)
+            var matchList = matches.GroupBy(x => x.Item1, x => x.Item2, (key, g) => (key, g.ToList()));
+            var syncMatches = new List<LiveConfig>();
+
+            foreach (var match in matchList)
             {
-                var matchIdPair = new KeyValuePair<string, string>($"live_configs[{index}][match_id]", matchId.ToString());
-                var isLivePair = new KeyValuePair<string, string>($"live_configs[{index}][is_live]", isLive ? "true" : "false");
-                result.Add(matchIdPair);
-                result.Add(isLivePair);
-                index++;
+                (int mainMatchId, List<int?> subType) = match;
+
+                syncMatches.Add(new LiveConfig
+                {
+                    MatchId = mainMatchId,
+                    IsLive = isLive,
+                    Subtypes = subType.Where(y => y.HasValue).Select(y => y.Value).ToList()
+                });
             }
 
-            var unixTimestamp = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            var timestampPair = new KeyValuePair<string, string>("_API_BEGIN_STAMP", unixTimestamp.ToString());
-            result.Add(timestampPair);
+            var result = new SyncIsLiveModel { Matches = syncMatches };
 
-            return result;
+            return JsonConvert.SerializeObject(result); ;
         }
 
-        private List<int> GetFailedMatches(string synchronizedResult)
+        private List<(int, int?)> GetFailedMatches(string synchronizedResult)
         {
             var failedMessages = JsonConvert.DeserializeObject<List<string>>(synchronizedResult);
-            return failedMessages.Where(l => regex.IsMatch(l))
-                .Select(l => regex.Match(l).Groups[1].Value)
-                .Select(l => int.Parse(l))
+            var matches = failedMessages.Where(l => regex.IsMatch(l))
+                .Select(x => GetFailedMatch(x))
                 .ToList();
+
+            return matches;
+        }
+
+        private static (int, int?) GetFailedMatch(string synchronizedResult)
+        {
+            var elements = synchronizedResult.Split(':');
+
+            if (elements[1].Equals(InvalidChildMatch))
+            {
+                return (int.Parse(elements[0]), ParseSubtype(elements[2]));
+            }
+
+            return (int.Parse(elements[0]), null);
+        }
+
+        private static int? ParseSubtype(string result)
+        {
+            if (!string.IsNullOrEmpty(result))
+            {
+                var subtypeText = "subType ";
+                var fromText = " from";
+                var pFrom = result.IndexOf(subtypeText) + subtypeText.Length;
+                var pTo = result.IndexOf(fromText);
+                var subType = result.Substring(pFrom, pTo - pFrom);
+
+                if (!string.IsNullOrWhiteSpace(subType))
+                {
+                    return int.Parse(result.Substring(pFrom, pTo - pFrom));
+                }
+            }
+
+            return null;
         }
     }
 }
