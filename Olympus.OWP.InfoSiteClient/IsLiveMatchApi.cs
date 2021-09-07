@@ -73,12 +73,25 @@
             {
                 (int mainMatchId, List<int?> subType) = match;
 
-                syncMatches.Add(new LiveConfig
+                if (subType.Any(x => !x.HasValue))
                 {
-                    MatchId = mainMatchId,
-                    IsLive = isLive,
-                    Subtypes = subType.Where(y => y.HasValue).Select(y => y.Value).ToList()
-                });
+                    syncMatches.Add(new LiveConfig
+                    {
+                        MatchId = mainMatchId,
+                        IsLive = isLive,
+                        Subtypes = new List<int>()
+                    });
+                }
+
+                if (subType.Any(x => x.HasValue))
+                {
+                    syncMatches.Add(new LiveConfig
+                    {
+                        MatchId = mainMatchId,
+                        IsLive = isLive,
+                        Subtypes = subType.Where(y => y.HasValue).Select(y => y.Value).ToList()
+                    });
+                }
             }
 
             var result = new SyncIsLiveModel { Matches = syncMatches };
