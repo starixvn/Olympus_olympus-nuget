@@ -5,6 +5,8 @@ using Fanex.Data.Repository;
 
 namespace Olympus.SimpleDataApi
 {
+    using Newtonsoft.Json;
+
     public interface SimpleCriteriaFactory
     {
         Type GetCriteriaType(string apiKey);
@@ -18,7 +20,7 @@ namespace Olympus.SimpleDataApi
 
     public abstract class SimpleCriteriaFactoryBase : SimpleCriteriaFactory
     {
-        protected readonly JavaScriptSerializer serializer = new JavaScriptSerializer();
+        protected readonly JavaScriptSerializer serializer = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
 
         protected static readonly Dictionary<string, Type> CriteriaTypes = new Dictionary<string, Type>();
 
@@ -33,8 +35,7 @@ namespace Olympus.SimpleDataApi
 
         public virtual INonQueryCommand CreateNonQueryCommand(Type commandType, Dictionary<string, object> queryModel)
         {
-            var nonQueryCommand = serializer.Deserialize(serializer.Serialize(queryModel), commandType);
-
+            var nonQueryCommand =  serializer.Deserialize(serializer.Serialize(queryModel), commandType);
             return (INonQueryCommand)nonQueryCommand;
         }
 
