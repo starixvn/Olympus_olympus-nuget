@@ -5,8 +5,6 @@ using Fanex.Data.Repository;
 
 namespace Olympus.SimpleDataApi
 {
-    using Newtonsoft.Json;
-
     public interface SimpleCriteriaFactory
     {
         Type GetCriteriaType(string apiKey);

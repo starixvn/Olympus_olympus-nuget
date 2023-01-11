@@ -1,7 +1,7 @@
-﻿using Fanex.Data.Repository;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using Fanex.Data.Repository;
 
 namespace Olympus.SimpleDataApi
 {
@@ -24,16 +24,16 @@ namespace Olympus.SimpleDataApi
 
         public virtual ICriteria CreateCriteria(Type criteriaType, Dictionary<string, object> queryModel)
         {
-            var json = JsonConvert.SerializeObject(queryModel);
-            var criteria = JsonConvert.DeserializeObject(json, criteriaType);
+            var json = JsonSerializer.Serialize(queryModel);
+            var criteria = JsonSerializer.Deserialize(json, criteriaType, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             return (ICriteria)criteria;
         }
 
         public virtual INonQueryCommand CreateNonQueryCommand(Type commandType, Dictionary<string, object> queryModel)
         {
-            var json = JsonConvert.SerializeObject(queryModel);
-            var nonQueryCommand = JsonConvert.DeserializeObject(json, commandType);
+            var json = JsonSerializer.Serialize(queryModel);
+            var nonQueryCommand = JsonSerializer.Deserialize(json, commandType, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             return (INonQueryCommand)nonQueryCommand;
         }
@@ -47,6 +47,5 @@ namespace Olympus.SimpleDataApi
         {
             return CommandTypes.ContainsKey(apiKey) ? CommandTypes[apiKey] : null;
         }
-
     }
 }
