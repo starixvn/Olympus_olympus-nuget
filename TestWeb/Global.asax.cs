@@ -1,20 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Routing;
-using Fanex.Data;
-using Fanex.Data.SqlServer;
-using Fanex.Logging;
-using Fanex.Logging.Sentry.RavenClient;
-using Fanex.NAP.Core.SignIn;
-using Fanex.TicketControl.Website.App_Start;
-using SharpRaven;
-using TestWeb.App_Start;
-
-namespace Fanex.TicketControl.Website
+﻿namespace TestWeb
 {
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Web;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using Fanex.Data;
+    using Fanex.Data.SqlServer;
+    using Fanex.Logging;
+    using Fanex.Logging.Sentry.RavenClient;
+    using SharpRaven;
+
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
@@ -28,14 +25,13 @@ namespace Fanex.TicketControl.Website
             var sentryEngineOptions = new SentryEngineOptions
             {
                 Dsn = new Dsn(ConfigurationManager.AppSettings["SentryToken"]),
-                WriteLogTimeoutSeconds = 1,
+                WriteLogTimeoutSeconds = 1
             };
 
             logEngine.Add(new SentryLogging(sentryEngineOptions));
             LogManager.SetDefaultLogCategory("TestWeb").Use(logEngine);
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            SignInHandler.Register();
 
             DbSettingProviderManager
               .StartNewSession()

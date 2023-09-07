@@ -1,12 +1,12 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using Fanex.Data.Repository;
-using Newtonsoft.Json;
-using TestWeb.Criteria;
-using TestWeb.Models;
-
-namespace Fanex.TicketControl.Website.Controllers
+﻿namespace TestWeb.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+    using Fanex.Data.Repository;
+    using Newtonsoft.Json;
+    using Criteria;
+    using Models;
+
     public class HomeController : Controller
     {
         private string OutputText = "";

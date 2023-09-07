@@ -1,7 +1,7 @@
-﻿using Fanex.Data.Repository;
-
-namespace TestWeb.Criteria
+﻿namespace TestWeb.Criteria
 {
+    using Fanex.Data.Repository;
+
     public class JacobReturn2TableAndOutputCriteria : CriteriaBase
     {
         public int MyOutput { get; set; }

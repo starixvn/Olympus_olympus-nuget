@@ -1,14 +1,14 @@
-﻿using Newtonsoft.Json;
-using Olympus.FPSAPI.Client.Model;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace Olympus.FPSAPI.Client
+﻿namespace Olympus.FPSAPI.Client
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
+    using System.Xml.Linq;
+    using Model;
+    using Newtonsoft.Json;
+
     public interface FraudServiceWrapper
     {
         Task<List<CustomerDevice>> GetAssociatedCustomers(string host, int custId);
@@ -25,8 +25,8 @@ namespace Olympus.FPSAPI.Client
     public class FraudServiceWrapperImp : FraudServiceWrapper
     {
         private const int AssociatedByIP = 3;
-        static HttpClient jsonClient = new HttpClient();
-        static HttpClient xmlClient = new HttpClient();
+        private static readonly HttpClient jsonClient = new HttpClient();
+        private static readonly HttpClient xmlClient = new HttpClient();
 
         public async Task<List<CustomerDevice>> GetAssociatedCustomers(string host, int custId)
         {
@@ -59,8 +59,6 @@ namespace Olympus.FPSAPI.Client
 
         public async Task<string> GetCategory(string host, string custId)
         {
-            var result = new List<string>();
-
             xmlClient.DefaultRequestHeaders.Accept.Clear();
             xmlClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
 
@@ -73,15 +71,9 @@ namespace Olympus.FPSAPI.Client
 
             var responseData = await response.Content.ReadAsAsync<string>();
 
-            XDocument xdoc = XDocument.Parse(responseData);
-            var elements = xdoc.Descendants("Root").Descendants("CustomerClassification");
-            if (elements.Any())
-            {
-                foreach (var element in elements)
-                {
-                    result.Add(element.Attribute("CategoryName").Value);
-                }
-            }
+            var document = XDocument.Parse(responseData);
+            var elements = document.Descendants("Root").Descendants("CustomerClassification");
+            var result = elements.Select(element => element.Attribute("CategoryName").Value).ToList();
 
             return string.Join(", ", result);
         }

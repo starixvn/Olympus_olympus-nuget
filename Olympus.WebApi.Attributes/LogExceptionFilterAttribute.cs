@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web.Http.Filters;
-using Fanex.Logging.Extensions.Web;
-
-namespace Olympus.WebApi.Attributes
+﻿namespace Olympus.WebApi.Attributes
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web.Http.Filters;
+    using Fanex.Logging.Extensions.Web;
+
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class LogExceptionFilterAttribute : ExceptionFilterAttribute
     {

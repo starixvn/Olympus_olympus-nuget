@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Mvc;
-using Fanex.Logging;
-
-namespace Olympus.HttpLogger
+﻿namespace Olympus.HttpLogger
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Web;
+    using System.Web.Mvc;
+    using Fanex.Logging;
+
     [AttributeUsage(AttributeTargets.Method)]
     public class LoggingFilterAttribute : ActionFilterAttribute
     {
@@ -24,15 +25,15 @@ namespace Olympus.HttpLogger
         {
             this.logResponse = logResponse;
             this.logJsonResponseOnly = logJsonResponseOnly;
-            this.includePatterns = new List<string> { ".*" };
-            this.excludePatterns = new List<string>();
+            includePatterns = new List<string> { ".*" };
+            excludePatterns = new List<string>();
         }
 
         public LoggingFilterAttribute(bool logResponse, bool logJsonResponseOnly, List<string> excludePatterns)
         {
             this.logResponse = logResponse;
             this.logJsonResponseOnly = logJsonResponseOnly;
-            this.includePatterns = new List<string> { ".*" };
+            includePatterns = new List<string> { ".*" };
             this.excludePatterns = excludePatterns ?? new List<string>();
         }
 
@@ -65,7 +66,7 @@ namespace Olympus.HttpLogger
             var request = context.Request;
             var response = context.Response;
 
-            var username = context?.User?.Identity?.Name;
+            var username = context.User?.Identity?.Name;
             var requestBody = ReadRequestBody(request);
 
             if (!IsInclude(request.Url.ToString()) || IsExcluded(request.Url.ToString()))
@@ -105,14 +106,14 @@ namespace Olympus.HttpLogger
 
         }
 
-        private void WriteLog(string pathAndQuery, string url, string queryString, string username, string userAgent, string requestBody, double executionTime)
+        private static void WriteLog(string pathAndQuery, string url, string queryString, string username, string userAgent, string requestBody, double executionTime)
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine($"{pathAndQuery}");
             stringBuilder.AppendLine($"Url: {url}");
             stringBuilder.AppendLine($"QueryString: {queryString}");
             stringBuilder.AppendLine($"Username: {username}");
-            stringBuilder.AppendLine($"Server Time: {DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")}");
+            stringBuilder.AppendLine($"Server Time: {DateTime.Now:MM/dd/yyyy HH:mm:ss}");
             stringBuilder.AppendLine($"Execution Time: {executionTime}");
             stringBuilder.AppendLine($"RequestBody: {requestBody}");
             stringBuilder.AppendLine("==================Response==================");
@@ -142,16 +143,7 @@ namespace Olympus.HttpLogger
 
         private bool IsInclude(string url)
         {
-            foreach (var pattern in includePatterns)
-            {
-                var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-                if (regex.IsMatch(url))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return includePatterns.Select(pattern => new Regex(pattern, RegexOptions.IgnoreCase)).Any(regex => regex.IsMatch(url));
         }
 
 

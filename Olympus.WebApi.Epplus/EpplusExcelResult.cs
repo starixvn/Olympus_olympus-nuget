@@ -1,14 +1,14 @@
-﻿using Epplus.Mapper.Extensions;
-using OfficeOpenXml;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web.Http;
-
-namespace Olympus.WebApi.Results
+﻿namespace Olympus.WebApi.Epplus
 {
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using global::Epplus.Mapper.Extensions;
+    using OfficeOpenXml;
+
     public class EpplusExcelResult : IHttpActionResult
     {
         private readonly string password;

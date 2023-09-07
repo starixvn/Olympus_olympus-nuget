@@ -1,7 +1,7 @@
-﻿using System.Web.Http;
-
-namespace TestWeb.App_Start
+﻿namespace TestWeb
 {
+    using System.Web.Http;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration configuration)

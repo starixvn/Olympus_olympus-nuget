@@ -1,7 +1,7 @@
-﻿using System.Web.Http;
-
-namespace TestWeb.Controllers
+﻿namespace TestWeb.Controllers
 {
+    using System.Web.Http;
+
     public class ValuesController : ApiController
     {
         [HttpGet]

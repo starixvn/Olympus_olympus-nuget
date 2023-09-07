@@ -1,10 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using Fanex.Logging;
-
-namespace Olympus.HttpLogger
+﻿namespace Olympus.HttpLogger
 {
+    using System;
+    using System.IO;
+    using System.Text;
+    using Fanex.Logging;
+
     public class CaptureMvcResponse : MemoryStream
     {
         private readonly Stream responseStream;
@@ -61,7 +61,7 @@ namespace Olympus.HttpLogger
             stringBuilder.AppendLine($"Url: {url}");
             stringBuilder.AppendLine($"QueryString: {queryString}");
             stringBuilder.AppendLine($"Username: {username}");
-            stringBuilder.AppendLine($"Server Time: {DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")}");
+            stringBuilder.AppendLine($"Server Time: {DateTime.Now:MM/dd/yyyy HH:mm:ss}");
             stringBuilder.AppendLine($"Execution Time: {executionTime}");
             stringBuilder.AppendLine($"RequestBody: {requestBody}");
             stringBuilder.AppendLine("==================Response==================");

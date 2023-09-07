@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Fanex.NAP.Core.Business;
-
-namespace Olympus.SimpleDataApi
+﻿namespace Olympus.SimpleDataApi
 {
+    using System.Collections.Generic;
+    using Fanex.NAP.Core.Business;
+
     public interface SimpleFunctionPermissionFactory
     {
         FunctionPermission GetFunctionPermission(string apiKey);
@@ -24,7 +24,7 @@ namespace Olympus.SimpleDataApi
         }
         public virtual FunctionPermission GetFunctionPermission(string apiKey)
         {
-            return FunctionPermissions.ContainsKey(apiKey) ? FunctionPermissions[apiKey] : null;
+            return FunctionPermissions.TryGetValue(apiKey, out var permission) ? permission : null;
         }
     }
 }

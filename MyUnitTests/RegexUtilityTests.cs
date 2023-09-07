@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
-using Olympus.HttpLogger;
-
-namespace MyUnitTests
+﻿namespace MyUnitTests
 {
+    using NUnit.Framework;
+    using Olympus.HttpLogger;
+
     public class RegexUtilityTests
     {
         [Test]

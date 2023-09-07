@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Script.Serialization;
-using Fanex.Data.Repository;
-
-namespace Olympus.SimpleDataApi
+﻿namespace Olympus.SimpleDataApi
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Script.Serialization;
+    using Fanex.Data.Repository;
+
     public interface SimpleCriteriaFactory
     {
         Type GetCriteriaType(string apiKey);
@@ -39,12 +39,12 @@ namespace Olympus.SimpleDataApi
 
         public virtual Type GetCriteriaType(string apiKey)
         {
-            return CriteriaTypes.ContainsKey(apiKey) ? CriteriaTypes[apiKey] : null;
+            return CriteriaTypes.TryGetValue(apiKey, out var type) ? type : null;
         }
 
         public virtual Type GetCommandType(string apiKey)
         {
-            return CommandTypes.ContainsKey(apiKey) ? CommandTypes[apiKey] : null;
+            return CommandTypes.TryGetValue(apiKey, out var type) ? type : null;
         }
 
     }

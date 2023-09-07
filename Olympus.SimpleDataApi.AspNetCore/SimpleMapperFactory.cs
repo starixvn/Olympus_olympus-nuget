@@ -1,25 +1,24 @@
-﻿using System;
+﻿namespace Olympus.SimpleDataApi;
+
+using System;
 using System.Collections.Generic;
 
-namespace Olympus.SimpleDataApi
+public interface SimpleMapperFactory
 {
-    public interface SimpleMapperFactory
+    SimpleMapperService GetSimpleMapperService(string apiKey);
+}
+
+public class SimpleMapperFactoryBase : SimpleMapperFactory
+{
+    protected static Dictionary<string, Type> SimpleMapperServices = new();
+
+    protected static void AddSimpleMapperService(string apiKey, Type type)
     {
-        SimpleMapperService GetSimpleMapperService(string apiKey);
+        SimpleMapperServices.Add(apiKey, type);
     }
 
-    public class SimpleMapperFactoryBase : SimpleMapperFactory
+    public virtual SimpleMapperService GetSimpleMapperService(string apiKey)
     {
-        protected static Dictionary<string, Type> SimpleMapperServices = new Dictionary<string, Type>();
-
-        protected static void AddSimpleMapperService(string apiKey, Type type)
-        {
-            SimpleMapperServices.Add(apiKey, type);
-        }
-
-        public virtual SimpleMapperService GetSimpleMapperService(string apiKey)
-        {
-            return SimpleMapperServices.ContainsKey(apiKey) ? Activator.CreateInstance(SimpleMapperServices[apiKey]) as SimpleMapperService : null;
-        }
+        return SimpleMapperServices.TryGetValue(apiKey, out var service) ? Activator.CreateInstance(service) as SimpleMapperService : null;
     }
 }

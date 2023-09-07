@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyUnitTests", "MyUnitTests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWeb", "TestWeb\TestWeb.csproj", "{E40C7EE5-0817-4EFD-A9AA-DE52F0B85B30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olympus.OnebookUM.WindowsServices", "Olympus.OnebookUM.WindowsServices\Olympus.OnebookUM.WindowsServices.csproj", "{8A40A470-AA89-4FB5-B128-556A0FE47331}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olympus.SimpleDataApi.AspNetCore", "Olympus.SimpleDataApi.AspNetCore\Olympus.SimpleDataApi.AspNetCore.csproj", "{B905CC70-B896-4DE5-8377-5459BE098CF9}"
 EndProject
 Global
@@ -61,10 +59,6 @@ Global
 		{E40C7EE5-0817-4EFD-A9AA-DE52F0B85B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E40C7EE5-0817-4EFD-A9AA-DE52F0B85B30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E40C7EE5-0817-4EFD-A9AA-DE52F0B85B30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A40A470-AA89-4FB5-B128-556A0FE47331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A40A470-AA89-4FB5-B128-556A0FE47331}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A40A470-AA89-4FB5-B128-556A0FE47331}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A40A470-AA89-4FB5-B128-556A0FE47331}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B905CC70-B896-4DE5-8377-5459BE098CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B905CC70-B896-4DE5-8377-5459BE098CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B905CC70-B896-4DE5-8377-5459BE098CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU

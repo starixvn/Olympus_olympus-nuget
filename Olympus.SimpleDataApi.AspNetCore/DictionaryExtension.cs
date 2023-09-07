@@ -1,38 +1,27 @@
-﻿using System;
+﻿namespace Olympus.SimpleDataApi;
+
+using System;
 using System.Collections.Generic;
 
-namespace Olympus.SimpleDataApi
+public static class DictionaryExtension
 {
-    public static class DictionaryExtension
+    public static Dictionary<string, object> SafeAdd(this Dictionary<string, object> dictionary, string key, object value)
     {
-        public static Dictionary<string, object> SafeAdd(this Dictionary<string, object> dictionary, string key, object value)
-        {
-            if (dictionary.ContainsKey(key))
-            {
-                dictionary[key] = value;
-            }
-            else
-            {
-                dictionary.Add(key, value);
-            }
+        dictionary[key] = value;
 
-            return dictionary;
+        return dictionary;
+    }
+
+    public static Dictionary<string, object> CloneCaseInSensitive(this Dictionary<string, object> dictionary)
+    {
+        var clonedDictionary = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
+
+        foreach (var key in dictionary.Keys)
+        {
+            var lowerCaseKey = key.ToLower();
+            clonedDictionary.TryAdd(lowerCaseKey, dictionary[key]);
         }
 
-        public static Dictionary<string, object> CloneCaseInSensitive(this Dictionary<string, object> dictionary)
-        {
-            var clonedDictionary = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
-
-            foreach (var key in dictionary.Keys)
-            {
-                var lowerCaseKey = key.ToLower();
-                if (!clonedDictionary.ContainsKey(lowerCaseKey))
-                {
-                    clonedDictionary.Add(lowerCaseKey, dictionary[key]);
-                }
-            }
-
-            return clonedDictionary;
-        }
+        return clonedDictionary;
     }
 }

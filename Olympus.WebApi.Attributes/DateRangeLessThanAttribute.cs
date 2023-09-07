@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Olympus.WebApi.Attributes
+﻿namespace Olympus.WebApi.Attributes
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public sealed class DateRangeLessThanAttribute : ValidationAttribute
     {

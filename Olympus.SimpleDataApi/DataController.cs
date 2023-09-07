@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web.Http;
-using Fanex.Data.Repository;
-using Fanex.NAP.Core.Configuration;
-using Fanex.NAP.Core.Context;
-using Fanex.NAP.Core.Service.Impl;
-using Fanex.NAP.Core.Web.Session;
-
-namespace Olympus.SimpleDataApi
+﻿namespace Olympus.SimpleDataApi
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Http;
+    using Fanex.Data.Repository;
+    using Fanex.NAP.Core.Configuration;
+    using Fanex.NAP.Core.Context;
+    using Fanex.NAP.Core.Service.Impl;
+    using Fanex.NAP.Core.Web.Session;
+
     [RoutePrefix("state-api/simple-data")]
     public class DataController : ApiController
     {

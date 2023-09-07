@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Olympus.SimpleDataApi
+﻿namespace Olympus.SimpleDataApi
 {
+    using System;
+    using System.Collections.Generic;
+
     public static class DictionaryExtension
     {
         public static Dictionary<string, object> SafeAdd(this Dictionary<string, object> dictionary, string key, object value)
         {
-            if (dictionary.ContainsKey(key))
-            {
-                dictionary[key] = value;
-            }
-            else
-            {
-                dictionary.Add(key, value);
-            }
+            dictionary[key] = value;
 
             return dictionary;
         }

@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Http.Controllers;
-using System.Web.Http.Filters;
-using Fanex.Logging;
-
-namespace Olympus.HttpLogger
+﻿namespace Olympus.HttpLogger
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Web;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Filters;
+    using Fanex.Logging;
+
     [AttributeUsage(AttributeTargets.Method)]
     public class LoggingFilterApiAttribute : ActionFilterAttribute
     {
@@ -22,14 +23,14 @@ namespace Olympus.HttpLogger
         public LoggingFilterApiAttribute(bool logResponse)
         {
             this.logResponse = logResponse;
-            this.includePatterns = new List<string> { ".*" };
-            this.excludePatterns = new List<string>();
+            includePatterns = new List<string> { ".*" };
+            excludePatterns = new List<string>();
         }
 
         public LoggingFilterApiAttribute(bool logResponse, List<string> excludePatterns)
         {
             this.logResponse = logResponse;
-            this.includePatterns = new List<string> { ".*" };
+            includePatterns = new List<string> { ".*" };
             this.excludePatterns = excludePatterns ?? new List<string>();
         }
 
@@ -69,19 +70,14 @@ namespace Olympus.HttpLogger
             stringBuilder.AppendLine($"{request.RequestUri.PathAndQuery}");
             stringBuilder.AppendLine($"Url: {request.RequestUri}");
             stringBuilder.AppendLine($"Username: {GetUsername()}");
-            stringBuilder.AppendLine($"Server Time: {DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")}");
+            stringBuilder.AppendLine($"Server Time: {DateTime.Now:MM/dd/yyyy HH:mm:ss}");
             stringBuilder.AppendLine($"Execution Time: {executionTime}");
             stringBuilder.AppendLine($"RequestBody: {ReadRequestBody(actionExecutedContext)}");
             stringBuilder.AppendLine("==================Response==================");
 
-            if (logResponse)
-            {
-                stringBuilder.AppendLine(ReadResponseBody(actionExecutedContext));
-            }
-            else
-            {
-                stringBuilder.AppendLine("Response log configuration is off");
-            }
+            stringBuilder.AppendLine(logResponse
+                ? ReadResponseBody(actionExecutedContext)
+                : "Response log configuration is off");
 
             stringBuilder.AppendLine($"UserAgent: {request.Headers.UserAgent}");
             stringBuilder.AppendLine($"GUID: {Guid.NewGuid()}");
@@ -137,30 +133,14 @@ namespace Olympus.HttpLogger
 
         private bool IsExcluded(string url)
         {
-            foreach (var pattern in excludePatterns)
-            {
-                var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-                if (regex.IsMatch(url))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return excludePatterns.Select(pattern => new Regex(pattern, RegexOptions.IgnoreCase))
+                .Any(regex => regex.IsMatch(url));
         }
 
         private bool IsInclude(string url)
         {
-            foreach (var pattern in includePatterns)
-            {
-                var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-                if (regex.IsMatch(url))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return includePatterns.Select(pattern => new Regex(pattern, RegexOptions.IgnoreCase))
+                .Any(regex => regex.IsMatch(url));
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Olympus.FPSAPI.Client.Model
+﻿namespace Olympus.FPSAPI.Client.Model
 {
+    using System;
+
     public class CustomerDevice
     {
         public string Account { get; set; }

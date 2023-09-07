@@ -2,7 +2,7 @@
 {
     public class SimpleDataApiConfigurationHandler
     {
-        private static SimpleDataApiConfigurationHandler instance = new SimpleDataApiConfigurationHandler();
+        private static readonly SimpleDataApiConfigurationHandler instance = new SimpleDataApiConfigurationHandler();
 
         public static SimpleDataApiConfigurationHandler Instance()
         {
