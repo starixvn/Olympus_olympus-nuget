@@ -9,41 +9,38 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace Olympus.WebApi.FanexGridExcel
+namespace Olympus.WebApi.FanexGridExcel;
+
+public class FanexExcelResult : IActionResult
 {
-    public class FanexExcelResult : IActionResult
+    public FanexExcelResult(GridOptions gridOptions, string sheetName)
     {
-        public FanexExcelResult(GridOptions gridOptions, string sheetName)
+        var excel = new FanexExcel(gridOptions ?? new GridOptions());
+        Workbook = excel.ToExcel2003(sheetName);
+    }
+
+    public FanexExcelResult(List<GridOptions> listGridOptions, string sheetName)
+    {
+        var excel = new FanexExcel(listGridOptions ?? new List<GridOptions>());
+        Workbook = excel.ToExcel2003(sheetName);
+    }
+
+    public IWorkbook Workbook { get; }
+
+    public async Task ExecuteResultAsync(ActionContext context)
+    {
+        using var memoryStream = new MemoryStream();
+        Workbook.Write(memoryStream);
+        var response = new HttpResponseMessage(HttpStatusCode.OK)
         {
-            var excel = new FanexExcel(gridOptions ?? new GridOptions());
-            Workbook = excel.ToExcel2003(sheetName);
-        }
-
-        public FanexExcelResult(List<GridOptions> listGridOptions, string sheetName)
+            Content = new ByteArrayContent(memoryStream.ToArray())
+        };
+        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.ms-excel");
+        response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
         {
-            var excel = new FanexExcel(listGridOptions ?? new List<GridOptions>());
-            Workbook = excel.ToExcel2003(sheetName);
-        }
+            FileName = "undefined.xls"
+        };
 
-        public IWorkbook Workbook { get; }
-
-        public async Task ExecuteResultAsync(ActionContext context)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                Workbook.Write(memoryStream);
-                var response = new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new ByteArrayContent(memoryStream.ToArray())
-                };
-                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.ms-excel");
-                response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-                {
-                    FileName = "undefined.xls"
-                };
-
-                await response.Content.CopyToAsync(context.HttpContext.Response.Body);
-            }
-        }
+        await response.Content.CopyToAsync(context.HttpContext.Response.Body);
     }
 }

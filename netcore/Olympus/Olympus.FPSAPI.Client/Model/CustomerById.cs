@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Olympus.FPSAPI.Client.Model;
 
-namespace Olympus.FPSAPI.Client.Model
+public class CustomerById
 {
-    public class CustomerById
-    {
-        public int CustID { get; set; }
-    }
+    public int CustID { get; set; }
 }
