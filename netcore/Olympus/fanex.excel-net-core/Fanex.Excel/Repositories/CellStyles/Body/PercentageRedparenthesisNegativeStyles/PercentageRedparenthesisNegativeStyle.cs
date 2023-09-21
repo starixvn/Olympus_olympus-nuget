@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="PercentageRedparenthesisNegativeStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.PercentageRedparenthesisNegativeStyles
 {
@@ -10,9 +5,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body.PercentageRedparenthesisNegat
     using Fanex.Excel.Repositories.CellStyles.Body.PercentageRedparenthesisNegativeStyles.RowTypeStyles;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class PercentageRedparenthesisNegativeStyle : BodyRowBaseStyle
     {
         public PercentageRedparenthesisNegativeStyle(IWorkbook workbook, IFont font)

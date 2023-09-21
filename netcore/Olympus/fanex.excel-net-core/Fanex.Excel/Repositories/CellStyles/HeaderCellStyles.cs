@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="HeaderCellStyles.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles
 {
@@ -13,9 +8,6 @@ namespace Fanex.Excel.Repositories.CellStyles
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class HeaderCellStyles : BaseCellStyles, IHeaderCellStyles
     {
         private IFont _headerFont;
@@ -50,11 +42,6 @@ namespace Fanex.Excel.Repositories.CellStyles
 
         public ICellStyle Center { get; set; }
 
-        /// <summary>
-        /// Gets the header style.
-        /// </summary>
-        /// <param name="alignment">The alignment.</param>
-        /// <returns>Cell Style.</returns>
         public ICellStyle GetHeaderStyle(string alignment)
         {
             switch (alignment)

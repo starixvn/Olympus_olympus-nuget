@@ -1,4 +1,4 @@
-﻿namespace Olympus.OnebookUM.WindowsServices
+namespace Olympus.OnebookUM.WindowsServices
 {
     using System.Configuration;
     using Fanex.Caching;

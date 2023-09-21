@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="PagerOption.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Models
 {
@@ -10,9 +5,6 @@ namespace Fanex.Excel.Models
     using System.Collections.Generic;
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// Pager Option.
-    /// </summary>
     [Serializable]
     public class PagerOption
     {
@@ -28,10 +20,6 @@ namespace Fanex.Excel.Models
         [JsonProperty("itemsPerPageArray")]
         public List<int> ItemsPerPageArray { get; set; }
 
-        /// <summary>
-        /// Clones this instance.
-        /// </summary>
-        /// <returns>Pager Option object.</returns>
         public PagerOption Clone()
         {
             PagerOption clone = new PagerOption();

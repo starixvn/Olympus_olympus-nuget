@@ -1,4 +1,4 @@
-﻿namespace Olympus.HttpLogger
+namespace Olympus.HttpLogger
 {
     using System;
     using System.IO;

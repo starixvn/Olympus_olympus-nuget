@@ -1,4 +1,4 @@
-﻿namespace Olympus.WebApi.FanexGridExcel
+namespace Olympus.WebApi.FanexGridExcel
 {
     using System.Collections.Generic;
     using System.IO;

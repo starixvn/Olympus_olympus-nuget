@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="EvenStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Footer.DoubleStyles.RowTypeStyles
 {
@@ -12,9 +7,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Footer.DoubleStyles.RowTypeStyles
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class UpperStyle : FooterBaseCellStyle
     {
         public UpperStyle(IWorkbook workbook, IFont font)

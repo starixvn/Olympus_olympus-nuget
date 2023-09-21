@@ -1,4 +1,4 @@
-﻿namespace Fanex.Excel.Models
+namespace Fanex.Excel.Models
 {
     using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;

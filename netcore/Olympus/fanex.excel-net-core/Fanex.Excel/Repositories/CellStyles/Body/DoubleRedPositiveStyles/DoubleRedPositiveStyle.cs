@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="DoubleRedPositiveStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.DoubleRedPositiveStyles
 {
@@ -10,9 +5,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body.DoubleRedPositiveStyles
     using Fanex.Excel.Repositories.CellStyles.Body.DoubleRedPositiveStyles.RowTypeStyles;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class DoubleRedPositiveStyle : BodyRowBaseStyle
     {
         public DoubleRedPositiveStyle(IWorkbook workbook, IFont font)

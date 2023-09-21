@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ParentLevelOneStyle.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.PercentageStyles.RowTypeStyles
 {
@@ -11,9 +6,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body.PercentageStyles.RowTypeStyle
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class ParentLevelOneStyle : BodyBaseCellStyle
     {
         public ParentLevelOneStyle(IWorkbook workbook, IFont font)

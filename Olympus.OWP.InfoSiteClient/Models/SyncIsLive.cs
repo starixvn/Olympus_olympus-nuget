@@ -1,4 +1,4 @@
-﻿namespace Olympus.OWP.InfoSiteClient.Models
+namespace Olympus.OWP.InfoSiteClient.Models
 {
     using System.Collections.Generic;
     using Newtonsoft.Json;

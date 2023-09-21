@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="DateTimeStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Footer.DateTimeStyles
 {
@@ -13,9 +8,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Footer.DateTimeStyles
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class DateTimeStyle : BaseCellStyles
     {
         public DateTimeStyle(IWorkbook workbook, IFont font)

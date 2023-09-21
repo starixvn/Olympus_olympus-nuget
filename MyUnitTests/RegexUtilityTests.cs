@@ -1,4 +1,4 @@
-﻿namespace MyUnitTests
+namespace MyUnitTests
 {
     using NUnit.Framework;
     using Olympus.HttpLogger;

@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CenterStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Footer.GeneralStyles.LeftStyles
 {
@@ -13,9 +8,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Footer.GeneralStyles.LeftStyles
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CenterStyle : BaseCellStyles
     {
         public CenterStyle(IWorkbook workbook, IFont font)

@@ -1,16 +1,10 @@
-﻿namespace Fanex.Excel.Models
+namespace Fanex.Excel.Models
 {
     using SixLabors.ImageSharp;
 
 
-    /// <summary>
-    /// Excel Color.
-    /// </summary>
     public class ExcelColor
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ExcelColor"/> class.
-        /// </summary>
         public ExcelColor()
         {
             this.TitleBackgroundColor = Color.Transparent;

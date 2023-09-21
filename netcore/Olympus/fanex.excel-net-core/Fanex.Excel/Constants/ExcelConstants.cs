@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ExcelConstants.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Constants
 {
@@ -10,9 +5,6 @@ namespace Fanex.Excel.Constants
     using SixLabors.ImageSharp;
 
 
-    /// <summary>
-    /// Excel Constants.
-    /// </summary>
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:FieldsMustBePrivate", Justification = "Reviewed.")]
     public static class ExcelConstants
     {

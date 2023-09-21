@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="BodyCellStyles.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles
 {
@@ -25,9 +20,6 @@ namespace Fanex.Excel.Repositories.CellStyles
     using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class BodyCellStyles : BaseCellStyles, IBodyCellStyles
     {
         private IFont _bodyFont;
@@ -132,16 +124,6 @@ namespace Fanex.Excel.Repositories.CellStyles
 
         public DoubleParenthesisNegativeStyle DoubleParenthesisNegativeBold { get; set; }
 
-        /// <summary>
-        /// Gets the cell style.
-        /// </summary>
-        /// <param name="cellType">Type of the cell.</param>
-        /// <param name="horizonAlign">The horizon align.</param>
-        /// <param name="rowType">Type of the row.</param>
-        /// <param name="isBold">If set to <c>true</c> [is bold].</param>
-        /// <returns>
-        /// Cell style.
-        /// </returns>
         public ICellStyle GetCellStyle(ExcelCellType cellType, HAlignment horizonAlign, RowType rowType, bool isBold = false)
         {
             switch (cellType)
@@ -169,31 +151,12 @@ namespace Fanex.Excel.Repositories.CellStyles
             }
         }
 
-        /// <summary>
-        /// Gets the general cell style.
-        /// </summary>
-        /// <param name="horizonAlign">The horizon align.</param>
-        /// <param name="rowType">Type of the row.</param>
-        /// <param name="isBold">If set to <c>true</c> [is bold].</param>
-        /// <returns>
-        /// Cell style.
-        /// </returns>
         public ICellStyle GetGeneralCellStyle(HAlignment horizonAlign, RowType rowType, bool isBold = false)
         {
             var generalStyle = isBold || rowType == RowType.SubTotal ? this.GeneralBold : this.General;
             return generalStyle.GetCellStyle(rowType, horizonAlign);
         }
 
-        /// <summary>
-        /// Gets the integer cell style.
-        /// </summary>
-        /// <param name="horizonAlign">The horizon align.</param>
-        /// <param name="cellType">Type of the cell.</param>
-        /// <param name="rowType">Type of the row.</param>
-        /// <param name="isBold">If set to <c>true</c> [is bold].</param>
-        /// <returns>
-        /// Integer Cell Style.
-        /// </returns>
         private ICellStyle GetIntegerCellStyle(HAlignment horizonAlign, ExcelCellType cellType, RowType rowType, bool isBold)
         {
             switch (cellType)
@@ -215,16 +178,6 @@ namespace Fanex.Excel.Repositories.CellStyles
             }
         }
 
-        /// <summary>
-        /// Gets the double cell style.
-        /// </summary>
-        /// <param name="horizonAlign">The horizon align.</param>
-        /// <param name="cellType">Type of the cell.</param>
-        /// <param name="rowType">Type of the row.</param>
-        /// <param name="isBold">If set to <c>true</c> [is bold].</param>
-        /// <returns>
-        /// Double Cell Style.
-        /// </returns>
         private ICellStyle GetDoubleCellStyle(HAlignment horizonAlign, Enums.ExcelCellType cellType, RowType rowType, bool isBold)
         {
             switch (cellType)
@@ -250,16 +203,6 @@ namespace Fanex.Excel.Repositories.CellStyles
             }
         }
 
-        /// <summary>
-        /// Gets the percentage cell style.
-        /// </summary>
-        /// <param name="horizonAlign">The horizon align.</param>
-        /// <param name="cellType">Type of the cell.</param>
-        /// <param name="rowType">Type of the row.</param>
-        /// <param name="isBold">If set to <c>true</c> [is bold].</param>
-        /// <returns>
-        /// Percentage Cell Style.
-        /// </returns>
         private ICellStyle GetPercentageCellStyle(HAlignment horizonAlign, Enums.ExcelCellType cellType, RowType rowType, bool isBold)
         {
             switch (cellType)
@@ -283,15 +226,6 @@ namespace Fanex.Excel.Repositories.CellStyles
             }
         }
 
-        /// <summary>
-        /// Gets the date time cell style.
-        /// </summary>
-        /// <param name="horizonAlign">The horizon align.</param>
-        /// <param name="rowType">Type of the row.</param>
-        /// <param name="isBold">If set to <c>true</c> [is bold].</param>
-        /// <returns>
-        /// Date time Cell Style.
-        /// </returns>
         private ICellStyle GetDateTimeCellStyle(HAlignment horizonAlign, RowType rowType, bool isBold)
         {
             var dateTimeStyle = isBold || rowType == RowType.SubTotal ? this.DateTimeStyleBold : this.DateTimeStyle;

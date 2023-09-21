@@ -1,4 +1,4 @@
-﻿namespace TestWeb.Criteria
+namespace TestWeb.Criteria
 {
     using Fanex.Data.Repository;
 

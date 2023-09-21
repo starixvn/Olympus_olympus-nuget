@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="FooterCellStyles.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles
 {
@@ -24,9 +19,6 @@ namespace Fanex.Excel.Repositories.CellStyles
     using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class FooterCellStyles : BaseCellStyles, IFooterCellStyles
     {
         private IFont _footerFont;
@@ -82,13 +74,6 @@ namespace Fanex.Excel.Repositories.CellStyles
 
         public DoubleParenthesisNegativeStyle DoubleParenthesisNegative { get; set; }
 
-        /// <summary>
-        /// Gets the cell style.
-        /// </summary>
-        /// <param name="cellType">Type of the cell.</param>
-        /// <param name="horizonAlign">The horizon align.</param>
-        /// <param name="isFirstFooterRow">If set to <c>true</c> [is first footer row].</param>
-        /// <returns>Cell style.</returns>
         public ICellStyle GetCellStyle(ExcelCellType cellType, HAlignment horizonAlign, bool isFirstFooterRow)
         {
             switch (cellType)
@@ -124,12 +109,6 @@ namespace Fanex.Excel.Repositories.CellStyles
             }
         }
 
-        /// <summary>
-        /// Gets the general cell style.
-        /// </summary>
-        /// <param name="horizonAlign">The horizon align.</param>
-        /// <param name="isFirstFooterRow">If set to <c>true</c> [is first footer row].</param>
-        /// <returns>Cell Style.</returns>
         public ICellStyle GetGeneralCellStyle(HAlignment horizonAlign, bool isFirstFooterRow)
         {
             switch (horizonAlign)
@@ -148,12 +127,6 @@ namespace Fanex.Excel.Repositories.CellStyles
             }
         }
 
-        /// <summary>
-        /// Gets the integer cell style.
-        /// </summary>
-        /// <param name="cellType">Type of the cell.</param>
-        /// <param name="isFirstFooterRow">If set to <c>true</c> [is first footer row].</param>
-        /// <returns>Integer Cell Style.</returns>
         private ICellStyle GetIntegerCellStyle(HAlignment horizonAlign, Enums.ExcelCellType cellType, bool isFirstFooterRow)
         {
             switch (cellType)
@@ -175,12 +148,6 @@ namespace Fanex.Excel.Repositories.CellStyles
             }
         }
 
-        /// <summary>
-        /// Gets the Double cell style.
-        /// </summary>
-        /// <param name="cellType">Type of the cell.</param>
-        /// <param name="isFirstFooterRow">If set to <c>true</c> [is first footer row].</param>
-        /// <returns>Double Cell Style.</returns>
         private ICellStyle GetDoubleCellStyle(HAlignment horizonAlign, Enums.ExcelCellType cellType, bool isFirstFooterRow)
         {
             switch (cellType)
@@ -208,12 +175,6 @@ namespace Fanex.Excel.Repositories.CellStyles
             }
         }
 
-        /// <summary>
-        /// Gets the Percentage cell style.
-        /// </summary>
-        /// <param name="cellType">Type of the cell.</param>
-        /// <param name="isFirstFooterRow">If set to <c>true</c> [is first footer row].</param>
-        /// <returns>Percentage Cell Style.</returns>
         private ICellStyle GetPercentageCellStyle(HAlignment horizonAlign, Enums.ExcelCellType cellType, bool isFirstFooterRow)
         {
             switch (cellType)

@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="InfomationStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Footer.GeneralStyles.InfomationStyles
 {
@@ -14,9 +9,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Footer.GeneralStyles.InfomationSty
     using NPOI.XSSF.UserModel;
     using SixLabors.ImageSharp;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class InfomationStyle : BaseCellStyles
     {
         public InfomationStyle(IWorkbook workbook, IFont font)

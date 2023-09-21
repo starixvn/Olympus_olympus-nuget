@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="BaseCellStyles.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles
 {
@@ -12,9 +7,6 @@ namespace Fanex.Excel.Repositories.CellStyles
     using NPOI.XSSF.UserModel;
     using System.Diagnostics.CodeAnalysis;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class BaseCellStyles
     {
         public BaseCellStyles(IWorkbook workbook)
@@ -43,11 +35,6 @@ namespace Fanex.Excel.Repositories.CellStyles
 
         protected IDataFormat DataFormat { get; set; }
 
-        /// <summary>
-        /// Gets the horizontal alignment.
-        /// </summary>
-        /// <param name="horizonAlign">The horizon align.</param>
-        /// <returns>The value of HorizontalAlignment.</returns>
         public ICellStyle GetCellStyleByHAlign(HAlignment horizonAlign)
         {
             switch (horizonAlign)
@@ -63,15 +50,6 @@ namespace Fanex.Excel.Repositories.CellStyles
             }
         }
 
-        /// <summary>
-        /// Creates the cell style.
-        /// </summary>
-        /// <param name="dataFormat">The data format.</param>
-        /// <param name="colorBG">The color background color.</param>
-        /// <param name="font">The current font.</param>
-        /// <param name="alignment">The alignment.</param>
-        /// <param name="valignment">The vertical alignment.</param>
-        /// <returns>Cell style.</returns>
         protected ICellStyle CreateCellStyle(string dataFormat, IColor colorBG, IFont font, HorizontalAlignment alignment, VerticalAlignment valignment)
         {
             if (dataFormat == null || string.IsNullOrEmpty(dataFormat.Trim()))
@@ -87,15 +65,6 @@ namespace Fanex.Excel.Repositories.CellStyles
             return this.CreateCellStyleHSSF(dataFormat, (HSSFColor)colorBG, font, alignment, valignment);
         }
 
-        /// <summary>
-        /// Creates the cell style XSSF.
-        /// </summary>
-        /// <param name="dataFormat">The data format.</param>
-        /// <param name="colorBG">The color background color.</param>
-        /// <param name="font">The current font.</param>
-        /// <param name="alignment">The alignment.</param>
-        /// <param name="valignment">The vertical alignment.</param>
-        /// <returns>Cell Style.</returns>
         [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "This suppress is OK.")]
         protected ICellStyle CreateCellStyleXSSF(string dataFormat, XSSFColor colorBG, IFont font, HorizontalAlignment alignment, VerticalAlignment valignment)
         {
@@ -110,15 +79,6 @@ namespace Fanex.Excel.Repositories.CellStyles
             return cellStyle;
         }
 
-        /// <summary>
-        /// Creates the cell style HSSF.
-        /// </summary>
-        /// <param name="dataFormat">The data format.</param>
-        /// <param name="colorBG">The color background color.</param>
-        /// <param name="font">The current font.</param>
-        /// <param name="alignment">The alignment.</param>
-        /// <param name="valignment">The vertical alignment.</param>
-        /// <returns>Cell Style.</returns>
         [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "This Suppress is OK.")]
         protected ICellStyle CreateCellStyleHSSF(string dataFormat, HSSFColor colorBG, IFont font, HorizontalAlignment alignment, VerticalAlignment valignment)
         {

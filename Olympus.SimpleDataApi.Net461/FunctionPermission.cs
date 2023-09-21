@@ -1,4 +1,4 @@
-﻿namespace Olympus.SimpleDataApi
+namespace Olympus.SimpleDataApi
 {
     using Fanex.NAP.Core.Business;
 

@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="GeneralStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Footer.GeneralStyles
 {
@@ -10,9 +5,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Footer.GeneralStyles
     using Fanex.Excel.Repositories.CellStyles.Footer.GeneralStyles.LeftStyles;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class GeneralStyle : BaseCellStyles
     {
         public GeneralStyle(IWorkbook workbook, IFont font)

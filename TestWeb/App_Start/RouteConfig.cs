@@ -1,4 +1,4 @@
-﻿namespace TestWeb
+namespace TestWeb
 {
     using System.Web.Mvc;
     using System.Web.Routing;

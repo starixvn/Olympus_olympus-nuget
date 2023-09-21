@@ -1,17 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="DoubleRedNegativeStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.DoubleRedNegativeStyles
 {
     using Fanex.Excel.Repositories.CellStyles.Body.DoubleRedNegativeStyles.RowTypeStyles;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class DoubleRedNegativeStyle : BodyRowBaseStyle
     {
         public DoubleRedNegativeStyle(IWorkbook workbook, IFont font)

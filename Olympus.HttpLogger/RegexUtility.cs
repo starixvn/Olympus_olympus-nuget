@@ -1,4 +1,4 @@
-﻿namespace Olympus.HttpLogger
+namespace Olympus.HttpLogger
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;

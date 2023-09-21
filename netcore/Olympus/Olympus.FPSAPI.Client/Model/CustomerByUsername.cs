@@ -1,4 +1,4 @@
-﻿namespace Olympus.FPSAPI.Client.Model;
+namespace Olympus.FPSAPI.Client.Model;
 
 public class CustomerByUsername
 {

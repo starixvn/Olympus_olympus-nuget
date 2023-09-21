@@ -1,4 +1,4 @@
-﻿namespace TestWeb
+namespace TestWeb
 {
     using System.Web.Http;
 

@@ -1,4 +1,4 @@
-﻿namespace Olympus.WebApi.Epplus;
+namespace Olympus.WebApi.Epplus;
 
 using System.Net;
 using System.Net.Http;

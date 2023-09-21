@@ -1,16 +1,8 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ParentLevelOneColor.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CustomColors
 {
     using NPOI.HSSF.Util;
 
-    /// <summary>
-    /// The ParentColor class.
-    /// </summary>
     public class ParentLevelOneColor : HSSFColor
     {
         public const string HexString = "";

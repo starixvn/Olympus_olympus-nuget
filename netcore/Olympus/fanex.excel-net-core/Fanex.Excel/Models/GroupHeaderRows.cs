@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="GroupHeaderRows.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Models
 {
@@ -10,9 +5,6 @@ namespace Fanex.Excel.Models
     using System.Collections.Generic;
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [Serializable]
     public class GroupHeaderRows
     {

@@ -1,4 +1,4 @@
-﻿namespace Olympus.SimpleDataApi
+namespace Olympus.SimpleDataApi
 {
     internal static class ParameterConfiguration
     {

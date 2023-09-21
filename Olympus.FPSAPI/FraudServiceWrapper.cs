@@ -1,4 +1,4 @@
-﻿namespace Olympus.FPSAPI.Client
+namespace Olympus.FPSAPI.Client
 {
     using System.Collections.Generic;
     using System.Linq;

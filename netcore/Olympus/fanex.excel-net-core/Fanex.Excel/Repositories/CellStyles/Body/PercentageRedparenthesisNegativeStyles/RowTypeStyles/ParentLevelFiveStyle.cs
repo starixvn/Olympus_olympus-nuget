@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ParentLevelFiveStyle.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.PercentageRedparenthesisNegativeStyles.RowTypeStyles
 {
@@ -11,9 +6,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body.PercentageRedparenthesisNegat
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class ParentLevelFiveStyle : BodyBaseCellStyle
     {
         public ParentLevelFiveStyle(IWorkbook workbook, IFont font)

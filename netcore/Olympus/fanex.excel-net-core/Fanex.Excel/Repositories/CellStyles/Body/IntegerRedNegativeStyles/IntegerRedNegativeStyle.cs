@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="IntegerRedNegativeStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.IntegerRedNegativeStyles
 {
@@ -10,9 +5,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body.IntegerRedNegativeStyles
     using Fanex.Excel.Repositories.CellStyles.Body.IntegerRedNegativeStyles.RowTypeStyles;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class IntegerRedNegativeStyle : BodyRowBaseStyle
     {
         public IntegerRedNegativeStyle(IWorkbook workbook, IFont font)

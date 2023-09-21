@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="SubTotalStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.GeneralStyles.RowTypeStyles
 {
@@ -11,9 +6,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body.GeneralStyles.RowTypeStyles
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class SubTotalStyle : BodyBaseCellStyle
     {
         public SubTotalStyle(IWorkbook workbook, IFont font)

@@ -1,4 +1,4 @@
-﻿namespace TestAspNetCore;
+namespace TestAspNetCore;
 
 using Fanex.Data.Repository;
 using Olympus.SimpleDataApi;

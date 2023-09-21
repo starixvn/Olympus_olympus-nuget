@@ -1,17 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="NoteInformationColor.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CustomColors
 {
     using System.Diagnostics.CodeAnalysis;
     using NPOI.HSSF.Util;
 
-    /// <summary>
-    /// The NoteInformationColor class.
-    /// </summary>
     public class NoteInformationColor : HSSFColor
     {
         public const string HexString = "";

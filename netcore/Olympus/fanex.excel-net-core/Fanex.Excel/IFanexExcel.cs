@@ -1,17 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="IFanexExcel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel
 {
     using System.IO;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface IFanexExcel
     {
         void ToExcel2010();

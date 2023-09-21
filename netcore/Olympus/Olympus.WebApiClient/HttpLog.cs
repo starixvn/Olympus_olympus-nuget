@@ -1,4 +1,4 @@
-﻿namespace Olympus.WebApiClient;
+namespace Olympus.WebApiClient;
 
 public class HttpLog
 {

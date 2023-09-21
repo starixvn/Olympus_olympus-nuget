@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Olympus.FPSAPI.Client.Model;
 using System.Collections.Generic;
 using System.Linq;

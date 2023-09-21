@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="HeaderColumns.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Models
 {
@@ -10,9 +5,6 @@ namespace Fanex.Excel.Models
     using Fanex.Excel.Enums;
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// Header Columns.
-    /// </summary>
     [Serializable]
     public class HeaderColumns : Columns, IHeaderColumns
     {
@@ -274,10 +266,6 @@ namespace Fanex.Excel.Models
             return this.ThClass != null && !string.IsNullOrEmpty(this.ThClass);
         }
 
-        /// <summary>
-        /// Clones this instance.
-        /// </summary>
-        /// <returns>Header Columns object.</returns>
         public new HeaderColumns Clone()
         {
             var clone = (HeaderColumns)base.Clone();

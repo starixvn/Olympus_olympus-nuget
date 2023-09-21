@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LeftStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Footer.GeneralStyles.LeftStyles
 {
@@ -13,9 +8,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Footer.GeneralStyles.LeftStyles
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class LeftStyle : BaseCellStyles
     {
         public LeftStyle(IWorkbook workbook, IFont font)

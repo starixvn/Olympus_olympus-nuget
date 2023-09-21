@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="FanexExcel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel
 {
@@ -25,9 +20,6 @@ namespace Fanex.Excel
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class FanexExcel : IFanexExcel
     {
         private const string UnknownSheetName = "Sheet1";
@@ -137,13 +129,6 @@ namespace Fanex.Excel
             this.GenerateExcel();
         }
 
-        /// <summary>
-        /// To the excel2003.
-        /// </summary>
-        /// <param name="sheetName">Name of the sheet.</param>
-        /// <returns>
-        /// Excel work book.
-        /// </returns>
         public IWorkbook ToExcel2003(string sheetName)
         {
             this._workSheet = this._workbook.CreateSheet(sheetName);
@@ -195,9 +180,6 @@ namespace Fanex.Excel
             RenderHeaderRow();
         }
 
-        /// <summary>
-        /// Renders the group header.
-        /// </summary>
         protected void RenderGroupHeader()
         {
             var columnCount = this._gridOptions.GroupHeaderRows.Count;
@@ -257,13 +239,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Renders the merge region for merge row and column.
-        /// </summary>
-        /// <param name="headerDataRow">The header data row.</param>
-        /// <param name="dataColIndex">Index of the data col.</param>
-        /// <param name="headerCell">The header cell.</param>
-        /// <param name="headerCellStyle">The header cell style.</param>
         protected void RenderMergeRegionForMergeRowAndColumn(GroupHeaderRows headerDataRow, int dataColIndex, ICell headerCell, ICellStyle headerCellStyle)
         {
             this._workSheet.AddMergedRegion(new CellRangeAddress(
@@ -286,13 +261,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Renders the merge region for merge row only.
-        /// </summary>
-        /// <param name="headerDataRow">The header data row.</param>
-        /// <param name="dataColIndex">Index of the data col.</param>
-        /// <param name="headerCell">The header cell.</param>
-        /// <param name="headerCellStyle">The header cell style.</param>
         protected void RenderMergeRegionForMergeRowOnly(GroupHeaderRows headerDataRow, int dataColIndex, ICell headerCell, ICellStyle headerCellStyle)
         {
             this._workSheet.AddMergedRegion(new CellRangeAddress(
@@ -308,14 +276,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Renders the merge region for merge column only.
-        /// </summary>
-        /// <param name="headerDataRow">The header data row.</param>
-        /// <param name="headerRow">The header row.</param>
-        /// <param name="dataColIndex">Index of the data col.</param>
-        /// <param name="headerCell">The header cell.</param>
-        /// <param name="headerCellStyle">The header cell style.</param>
         protected void RenderMergeRegionForMergeColumnOnly(
             GroupHeaderRows headerDataRow,
             IRow headerRow,
@@ -336,9 +296,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Renders the header row.
-        /// </summary>
         protected virtual void RenderHeaderRow()
         {
             var currentRow = this.CreateOrGetRow(this._workSheet, this._startRow++);
@@ -379,13 +336,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Renders the body cell.
-        /// </summary>
-        /// <param name="currentRow">The current row.</param>
-        /// <param name="currentCell">The current cell.</param>
-        /// <param name="cell">The current data cell.</param>
-        /// <param name="rowType">Type of the row.</param>
         protected virtual void RenderBodyCell(IRow currentRow, ICell currentCell, Columns cell, RowType rowType)
         {
             var header = cell.ReferenceHeaderColumn() ?? this._gridOptions.GetHeaderColumnByName(cell.Name);
@@ -433,13 +383,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Renders the merge column body cell.
-        /// </summary>
-        /// <param name="currentRow">The current row.</param>
-        /// <param name="currentCell">The current cell.</param>
-        /// <param name="cell">The cell data.</param>
-        /// <param name="cellStyle">The cell style.</param>
         protected void RenderMergeColBodyCell(IRow currentRow, ICell currentCell, Columns cell, ICellStyle cellStyle)
         {
             this._workSheet.AddMergedRegion(new CellRangeAddress(
@@ -454,12 +397,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Renders the merge row body cell.
-        /// </summary>
-        /// <param name="currentCell">The current cell.</param>
-        /// <param name="cell">The cell data.</param>
-        /// <param name="cellStyle">The cell style.</param>
         protected void RenderMergeRowBodyCell(ICell currentCell, Columns cell, ICellStyle cellStyle)
         {
             this._workSheet.AddMergedRegion(new CellRangeAddress(
@@ -476,9 +413,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Renders the footer rows.
-        /// </summary>
         protected virtual void RenderFooterRows()
         {
             if (this._gridOptions.ShowFooter && this._gridOptions.FooterRows != null && this._gridOptions.FooterRows.Count > 0)
@@ -493,15 +427,8 @@ namespace Fanex.Excel
                 }
             }
 
-            ////this.ColumnAutoWidth();
         }
 
-        /// <summary>
-        /// Renders the footer row.
-        /// </summary>
-        /// <param name="footerRow">The footer row.</param>
-        /// <param name="footerDataRow">The footer data row.</param>
-        /// <param name="isFirstFooterRow">If set to <c>true</c> [is first footer row].</param>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
@@ -609,9 +536,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Detects the hidden column.
-        /// </summary>
         private void DetectHiddenColumn()
         {
             if (this._gridOptions.HiddenColumns != null && this._gridOptions.HiddenColumns.Count > 0)
@@ -640,9 +564,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Registers the color of the custom.
-        /// </summary>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "OK")]
         private void RegisterCustomColor()
         {
@@ -693,9 +614,6 @@ namespace Fanex.Excel
             return color == Color.Transparent ? defaultColor : color;
         }
 
-        /// <summary>
-        /// Generates the excel file.
-        /// </summary>
         private void GenerateExcel()
         {
             if (this._gridOptions.ShowTitle)
@@ -712,9 +630,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Renders the title row.
-        /// </summary>
         private void RenderTitleRow()
         {
             switch (this._gridOptions.TitleType)
@@ -736,9 +651,6 @@ namespace Fanex.Excel
             this._startRow += this._gridOptions.TitleSeperatorRowNum;
         }
 
-        /// <summary>
-        /// Renders the normal title row.
-        /// </summary>
         private void RenderNormalTitleRow()
         {
             var currentRow = this.CreateOrGetRow(this._workSheet, this._startRow++);
@@ -753,9 +665,6 @@ namespace Fanex.Excel
             this._workSheet.AddMergedRegion(new CellRangeAddress(this._startRow - 1, this._startRow - 1, this._startCol, i - 1));
         }
 
-        /// <summary>
-        /// Renders the two line blue title row.
-        /// </summary>
         private void RenderTwoLineBlueTitleRow()
         {
             int i = this._startCol;
@@ -773,9 +682,6 @@ namespace Fanex.Excel
             this._workSheet.AddMergedRegion(new CellRangeAddress(this._startRow - 2, this._startRow - 1, this._startCol, i - 1));
         }
 
-        /// <summary>
-        /// Renders the two line blue title row.
-        /// </summary>
         private void RenderTwoLineBlueAndSubTitleRow()
         {
             for (int j = 0; j < 2; j++)
@@ -815,9 +721,6 @@ namespace Fanex.Excel
                 this._gridOptions.Columns.Count - 1));
         }
 
-        /// <summary>
-        /// Renders the one line blue title row.
-        /// </summary>
         private void RenderOneLineBlueTitleRow()
         {
             var currentRow = this.CreateOrGetRow(this._workSheet, this._startRow++);
@@ -832,9 +735,6 @@ namespace Fanex.Excel
             this._workSheet.AddMergedRegion(new CellRangeAddress(this._startRow - 1, this._startRow - 1, this._startCol, i - 1));
         }
 
-        /// <summary>
-        /// Renders the body row.
-        /// </summary>
         private void RenderBodyRow()
         {
             var rowCount = this._gridOptions.BodyRows.Count;
@@ -848,15 +748,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Renders the row.
-        /// If this row is Data Row (is normal or even row only) then increase body row cunt.
-        /// In case of this row is Subtotal, Parent or higher level data Row so do not increase body row count.
-        /// </summary>
-        /// <param name="currentDataRow">The current data row.</param>
-        /// <param name="currentRow">The current row.</param>
-        /// <param name="numberColumns">The number columns.</param>
-        /// <param name="parentLevel">The parent level.</param>
         private void RenderRow(GridDataRow currentDataRow, IRow currentRow, int numberColumns, int parentLevel = -1)
         {
             this._currentBodyRowIndex += currentDataRow.RowType == RowType.Normal || currentDataRow.RowType == RowType.Even ? 1 : 0;
@@ -909,11 +800,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Sets the cell value.
-        /// </summary>
-        /// <param name="cell">The current cell.</param>
-        /// <param name="value">The current value.</param>
         private void SetCellValue(ICell cell, object value)
         {
             var type = value.GetType();
@@ -947,12 +833,6 @@ namespace Fanex.Excel
             }
         }
 
-        /// <summary>
-        /// Creates the or get cell.
-        /// </summary>
-        /// <param name="row">The current row.</param>
-        /// <param name="cellIndex">Index of the cell.</param>
-        /// <returns>Current Cell.</returns>
         private ICell CreateOrGetCell(IRow row, int cellIndex)
         {
             if (row == null)
@@ -968,12 +848,6 @@ namespace Fanex.Excel
             return row.CreateCell(cellIndex);
         }
 
-        /// <summary>
-        /// Creates the or get row.
-        /// </summary>
-        /// <param name="worksheet">The worksheet.</param>
-        /// <param name="rowIndex">Index of the row.</param>
-        /// <returns>Current Row.</returns>
         private IRow CreateOrGetRow(ISheet worksheet, int rowIndex)
         {
             if (worksheet == null)

@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ParentLevelTwoStyle.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.DoubleStyles.RowTypeStyles
 {
@@ -11,9 +6,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body.DoubleStyles.RowTypeStyles
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class ParentLevelTwoStyle : BodyBaseCellStyle
     {
         public ParentLevelTwoStyle(IWorkbook workbook, IFont font)

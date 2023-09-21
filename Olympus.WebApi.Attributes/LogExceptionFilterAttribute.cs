@@ -1,4 +1,4 @@
-﻿namespace Olympus.WebApi.Attributes
+namespace Olympus.WebApi.Attributes
 {
     using System;
     using System.Threading;

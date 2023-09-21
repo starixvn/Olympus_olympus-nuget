@@ -1,17 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="PercentageStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.PercentageStyles
 {
     using Fanex.Excel.Repositories.CellStyles.Body.PercentageStyles.RowTypeStyles;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class PercentageStyle : BodyRowBaseStyle
     {
         public PercentageStyle(IWorkbook workbook, IFont font)

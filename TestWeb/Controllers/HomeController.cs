@@ -1,4 +1,4 @@
-﻿namespace TestWeb.Controllers
+namespace TestWeb.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;

@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ParentLevelFourStyle.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.IntegerRedparenthesisNegativeStyles.RowTypeStyles
 {
@@ -11,9 +6,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body.IntegerRedparenthesisNegative
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class ParentLevelFourStyle : BodyBaseCellStyle
     {
         public ParentLevelFourStyle(IWorkbook workbook, IFont font)

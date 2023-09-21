@@ -1,4 +1,4 @@
-﻿namespace Fanex.Excel.Repositories.CellStyles.Body
+namespace Fanex.Excel.Repositories.CellStyles.Body
 {
     
     using NPOI.HSSF.UserModel;
@@ -6,9 +6,6 @@
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// Body Base Cell Style.
-    /// </summary>
     public class BodyBaseCellStyle : BaseCellStyles
     {
         public BodyBaseCellStyle(IWorkbook workbook, IFont font, string dataFormat, HSSFColor hssfColor, XSSFColor xssfColor)

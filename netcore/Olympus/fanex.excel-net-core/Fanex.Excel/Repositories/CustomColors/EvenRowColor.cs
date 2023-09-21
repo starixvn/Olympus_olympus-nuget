@@ -1,17 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="EvenRowColor.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CustomColors
 {
     using System.Diagnostics.CodeAnalysis;
     using NPOI.HSSF.Util;
 
-    /// <summary>
-    /// The EvenRowColor class.
-    /// </summary>
     public class EvenRowColor : HSSFColor
     {
         public const string HexString = "";

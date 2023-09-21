@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="GridDataRow.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Models
 {
@@ -12,9 +7,6 @@ namespace Fanex.Excel.Models
     using Fanex.Excel.Extensions;
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// Grid Data Row.
-    /// </summary>
     [Serializable]
     public class GridDataRow : IGridDataRow
     {
@@ -73,10 +65,6 @@ namespace Fanex.Excel.Models
 
         public List<GridDataRow> SubRows { get; set; }
 
-        /// <summary>
-        /// Creates the columns.
-        /// </summary>
-        /// <param name="column">The column.</param>
         public void CreateColumns(Columns column)
         {
             column.GridDataRow = this;
@@ -96,11 +84,6 @@ namespace Fanex.Excel.Models
             this.SubRows.Add(subRow);
         }
 
-        /// <summary>
-        /// Adds the value.
-        /// </summary>
-        /// <param name="dataRow">The data row.</param>
-        /// <exception cref="System.InvalidCastException">The source and the adding row must have same structure.</exception>
         public void AddValue(GridDataRow dataRow)
         {
             try
@@ -129,11 +112,6 @@ namespace Fanex.Excel.Models
             }
         }
 
-        /// <summary>
-        /// Clones this instance.
-        /// </summary>
-        /// <param name="isCloneSubRows">Is clone sub rows.</param>
-        /// <returns>Grid Data Row.</returns>
         public GridDataRow Clone(bool isCloneSubRows = false)
         {
             var result = new GridDataRow();

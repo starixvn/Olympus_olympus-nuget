@@ -1,8 +1,3 @@
-﻿// auto generated
-// This file is used by Code Analysis to maintain SuppressMessage 
-// attributes that are applied to this project.
-// Project-level suppressions either have no target or are given 
-// a specific target and scoped to a namespace, type, member, etc.
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S4005:\"System.Uri\" arguments should be used instead of strings", Justification = "<Pending>", Scope = "member", Target = "~M:RiskControl.Fraud.FraudServiceWrapperImp.GetAssociatedCustomerByDevice(System.String,System.String)~System.Threading.Tasks.Task{System.Collections.Generic.List{RiskControl.Fraud.Model.CustomerDevice}}")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S4005:\"System.Uri\" arguments should be used instead of strings", Justification = "<Pending>", Scope = "member", Target = "~M:RiskControl.Fraud.FraudServiceWrapperImp.GetLatestIP(System.String,System.String)~System.Threading.Tasks.Task{System.String}")]

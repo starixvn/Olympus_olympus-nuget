@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="OddStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.PercentageStyles.RowTypeStyles
 {
@@ -13,9 +8,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body.PercentageStyles.RowTypeStyle
     using NPOI.XSSF.UserModel;
     using SixLabors.ImageSharp;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class OddStyle : BodyBaseCellStyle
     {
         public OddStyle(IWorkbook workbook, IFont font)

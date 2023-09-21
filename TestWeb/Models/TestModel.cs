@@ -1,4 +1,4 @@
-﻿namespace TestWeb.Models
+namespace TestWeb.Models
 {
     public class Table1
     {

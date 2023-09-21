@@ -1,4 +1,4 @@
-﻿namespace TestWeb
+namespace TestWeb
 {
     using System.Web.Mvc;
     using Olympus.HttpLogger;

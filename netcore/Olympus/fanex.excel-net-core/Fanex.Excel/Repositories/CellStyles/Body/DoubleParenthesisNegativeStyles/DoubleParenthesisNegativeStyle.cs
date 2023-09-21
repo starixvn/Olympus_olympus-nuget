@@ -1,11 +1,8 @@
-﻿namespace Fanex.Excel.Repositories.CellStyles.Body.DoubleParenthesisNegativeStyles
+namespace Fanex.Excel.Repositories.CellStyles.Body.DoubleParenthesisNegativeStyles
 {
     using Fanex.Excel.Repositories.CellStyles.Body.DoubleParenthesisNegativeStyles.RowTypeStyles;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class DoubleParenthesisNegativeStyle : BodyRowBaseStyle
     {
         public DoubleParenthesisNegativeStyle(IWorkbook workbook, IFont font)

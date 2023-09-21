@@ -1,4 +1,4 @@
-﻿namespace Fanex.Excel.Repositories.CellStyles.Footer.DoubleRedparenthesisNegativeStyles
+namespace Fanex.Excel.Repositories.CellStyles.Footer.DoubleRedparenthesisNegativeStyles
 {
     using DoubleParenthesisNegativeStyles.RowTypeStyles;
     using NPOI.SS.UserModel;

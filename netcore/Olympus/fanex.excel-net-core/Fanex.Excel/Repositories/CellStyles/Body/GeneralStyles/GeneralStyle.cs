@@ -1,17 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="GeneralStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.GeneralStyles
 {
     using Fanex.Excel.Repositories.CellStyles.Body.GeneralStyles.RowTypeStyles;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class GeneralStyle : BodyRowBaseStyle
     {
         public GeneralStyle(IWorkbook workbook, IFont font)

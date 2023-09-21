@@ -1,17 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="BodyRowBaseStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body
 {
     using Fanex.Excel.Enums;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class BodyRowBaseStyle : BaseCellStyles
     {
         public BodyRowBaseStyle(IWorkbook workbook, IFont font)
@@ -35,14 +27,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body
 
         public BaseCellStyles ParentLevelFive { get; set; }
 
-        /// <summary>
-        /// Gets the cell style.
-        /// </summary>
-        /// <param name="rowType">Type of the row.</param>
-        /// <param name="align">The align.</param>
-        /// <returns>
-        /// Cell Style Object.
-        /// </returns>
         public ICellStyle GetCellStyle(RowType rowType, HAlignment align = HAlignment.Null)
         {
             switch (rowType)

@@ -1,17 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="PercentageRedPositiveStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.PercentageRedPositiveStyles
 {
     using Fanex.Excel.Repositories.CellStyles.Body.PercentageRedPositiveStyles.RowTypeStyles;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class PercentageRedPositiveStyle : BodyRowBaseStyle
     {
         public PercentageRedPositiveStyle(IWorkbook workbook, IFont font)

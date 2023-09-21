@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="GridOptions.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Models
 {
@@ -14,8 +9,6 @@ namespace Fanex.Excel.Models
     using Newtonsoft.Json;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;    /// <summary>
-                                /// TODO: Update summary.
-                                /// </summary>
     [Serializable]
     public class GridOptions
     {
@@ -187,11 +180,6 @@ namespace Fanex.Excel.Models
             this.FooterRows.Add(footerRow);
         }
 
-        /// <summary>
-        /// Clones the specified is clone body.
-        /// </summary>
-        /// <param name="isCloneBody">If set to <c>true</c> [is clone body].</param>
-        /// <returns>Grid Options object.</returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. This is ok")]
         public GridOptions Clone(bool isCloneBody = false)
         {
@@ -250,11 +238,6 @@ namespace Fanex.Excel.Models
             return clone;
         }
 
-        /// <summary>
-        /// Gets the name of the header column by.
-        /// </summary>
-        /// <param name="headerName">Name of the header.</param>
-        /// <returns>Header Column.</returns>
         public HeaderColumns GetHeaderColumnByName(string headerName)
         {
             foreach (var header in this.Columns)

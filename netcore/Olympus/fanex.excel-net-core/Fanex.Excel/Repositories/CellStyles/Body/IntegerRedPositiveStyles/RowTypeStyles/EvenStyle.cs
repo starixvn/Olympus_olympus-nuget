@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="EvenStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.IntegerRedPositiveStyles.RowTypeStyles
 {
@@ -11,9 +6,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Body.IntegerRedPositiveStyles.RowT
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class EvenStyle : BodyBaseCellStyle
     {
         public EvenStyle(IWorkbook workbook, IFont font)

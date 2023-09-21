@@ -1,17 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="DateTimeStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Body.DateTimeStyles
 {
     using Fanex.Excel.Repositories.CellStyles.Body.DateTimeStyles.RowTypeStyles;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class DateTimeStyle : BodyRowBaseStyle
     {
         public DateTimeStyle(IWorkbook workbook, IFont font)

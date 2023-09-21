@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="OddStyle.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Repositories.CellStyles.Footer.DoubleRedPositiveStyles.RowTypeStyles
 {
@@ -11,9 +6,6 @@ namespace Fanex.Excel.Repositories.CellStyles.Footer.DoubleRedPositiveStyles.Row
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class LowerStyle : FooterBaseCellStyle
     {
         public LowerStyle(IWorkbook workbook, IFont font)

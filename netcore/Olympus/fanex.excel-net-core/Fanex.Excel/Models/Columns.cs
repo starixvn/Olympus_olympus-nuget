@@ -1,8 +1,3 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="Columns.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Models
 {
@@ -12,9 +7,6 @@ namespace Fanex.Excel.Models
     using Newtonsoft.Json;
     using NPOI.SS.UserModel;
 
-    /// <summary>
-    /// The Columns.
-    /// </summary>
     [Serializable]
     public class Columns : IColumns
     {
@@ -188,13 +180,6 @@ namespace Fanex.Excel.Models
             return !string.IsNullOrEmpty(TDClass);
         }
 
-        /// <summary>
-        /// Gets the reference header column.
-        /// </summary>
-        /// <param name="root">The parent object.</param>
-        /// <returns>
-        /// Header Columns object.
-        /// </returns>
         public HeaderColumns ReferenceHeaderColumn(GridDataRow root = null)
         {
             if (root != null)
@@ -217,10 +202,6 @@ namespace Fanex.Excel.Models
             return null;
         }
 
-        /// <summary>
-        /// Clones this instance.
-        /// </summary>
-        /// <returns>Columns object.</returns>
         public Columns Clone()
         {
             Columns clone = new Columns(this.ColumnIndex);

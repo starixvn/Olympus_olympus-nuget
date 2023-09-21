@@ -1,14 +1,6 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="IHeaderColumns.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// -----------------------------------------------------------------------
 
 namespace Fanex.Excel.Models
 {
-    /// <summary>
-    /// Header Columns.
-    /// </summary>
     public interface IHeaderColumns
     {
         bool ShouldSerializeFormatNumber();
