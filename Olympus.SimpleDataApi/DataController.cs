@@ -1,154 +1,169 @@
-﻿namespace Olympus.SimpleDataApi
+﻿namespace Olympus.SimpleDataApi;
+
+using System.Collections.Generic;
+using System.Linq;
+using Fanex.Data.Repository;
+using Fanex.NAP.Client.Configuration;
+using Fanex.NAP.Client.Helpers.Web;
+using Fanex.NAP.Client.Services;
+using Microsoft.AspNetCore.Mvc;
+
+[Route("state-api/simple-data")]
+[ApiController]
+public class DataController : ControllerBase
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Web.Http;
-    using Fanex.Data.Repository;
-    using Fanex.NAP.Core.Configuration;
-    using Fanex.NAP.Core.Context;
-    using Fanex.NAP.Core.Service.Impl;
-    using Fanex.NAP.Core.Web.Session;
+    private readonly SimpleCriteriaFactory simpleCriteriaFactory;
 
-    [RoutePrefix("state-api/simple-data")]
-    public class DataController : ApiController
+    private readonly SimpleFunctionPermissionFactory simpleFunctionPermissionFactory;
+
+    private readonly SimpleMapperFactory simpleMapperFactory;
+
+    private readonly IUserService userService;
+
+    private readonly INapSession napSession;
+
+    private readonly INapSettings napSettings;
+
+    public DataController(
+        IUserService userService,
+        INapSession napSession,
+        INapSettings napSettings,
+        SimpleCriteriaFactory simpleCriteriaFactory,
+        SimpleFunctionPermissionFactory simpleFunctionPermissionFactory,
+        SimpleMapperFactory simpleMapperFactory)
     {
-        private readonly SimpleCriteriaFactory simpleCriteriaFactory;
+        this.simpleCriteriaFactory = simpleCriteriaFactory;
+        this.simpleFunctionPermissionFactory = simpleFunctionPermissionFactory;
+        this.simpleMapperFactory = simpleMapperFactory;
+        this.napSession = napSession;
+        this.userService = userService;
+        this.napSettings = napSettings;
+    }
 
-        private readonly SimpleFunctionPermissionFactory simpleFunctionPermissionFactory;
+    [Route("query")]
+    public IActionResult Query(Dictionary<string, object> queryModel)
+    {
+        queryModel ??= new Dictionary<string, object>();
+        queryModel.SafeAdd(ParameterConfiguration.ActorId, napSession.UserId)
+            .SafeAdd(ParameterConfiguration.ActorUsername, napSession.UserName)
+            .SafeAdd("IP", GetClientIP());
 
-        private readonly SimpleMapperFactory simpleMapperFactory;
+        queryModel = queryModel.CloneCaseInSensitive();
 
-        private readonly CurrentSession currentSession;
-
-        private readonly CurrentContext currentContext;
-
-        private readonly UserService userService;
-
-        public DataController(SimpleCriteriaFactory simpleCriteriaFactory, SimpleFunctionPermissionFactory simpleFunctionPermissionFactory, SimpleMapperFactory simpleMapperFactory)
+        var apiKey = queryModel.ContainsKey("apikey") && queryModel["apikey"] != null ? queryModel["apikey"].ToString() : "";
+        if (string.IsNullOrEmpty(apiKey))
         {
-            this.simpleCriteriaFactory = simpleCriteriaFactory;
-            this.simpleFunctionPermissionFactory = simpleFunctionPermissionFactory;
-            this.simpleMapperFactory = simpleMapperFactory;
-            currentSession = new CurrentSession();
-            currentContext = new CurrentContext();
-            userService = new UserService();
+            return NotFound("apikey is empty");
         }
 
-        [Route("query")]
-        public IHttpActionResult Query(Dictionary<string, object> queryModel)
+        var functionPermission = simpleFunctionPermissionFactory.GetFunctionPermission(apiKey);
+        if (functionPermission != null)
         {
-            queryModel = queryModel ?? new Dictionary<string, object>();
-            queryModel.SafeAdd(ParameterConfiguration.ActorId, currentSession.UserId)
-                .SafeAdd(ParameterConfiguration.ActorUsername, currentSession.Username)
-                .SafeAdd("IP", currentContext.IP);
-
-            queryModel = queryModel.CloneCaseInSensitive();
-
-            var apiKey = queryModel.ContainsKey("apikey") && queryModel["apikey"] != null ? queryModel["apikey"].ToString() : "";
-            if (string.IsNullOrEmpty(apiKey))
+            if (napSession.UserId == 0)
             {
-                return Content(HttpStatusCode.NotFound, "apikey is empty");
+                return Unauthorized("You are not authorized to access this data.");
             }
 
-            var functionPermission = simpleFunctionPermissionFactory.GetFunctionPermission(apiKey);
-            if (functionPermission != null)
+            var currentPolicy = userService.GetPermission(napSession.UserId, napSettings.SiteId, functionPermission.Key);
+            var hasPermission = currentPolicy >= (int)functionPermission.Policy;
+            if (!hasPermission)
             {
-                if (currentSession.UserId == 0)
-                {
-                    return Content(HttpStatusCode.Unauthorized, "You are not authorized to access this data.");
-                }
-
-                var currentPolicy = userService.GetPermission(currentSession.UserId, NapSettings.Settings.SiteId, functionPermission.Key);
-                var hasPermission = currentPolicy >= (int)functionPermission.Policy;
-                if (!hasPermission)
-                {
-                    return Content(HttpStatusCode.Unauthorized, "You are not authorized to access this data.");
-                }
+                return Unauthorized("You are not authorized to access this data.");
             }
-
-            var criteriaType = simpleCriteriaFactory.GetCriteriaType(apiKey);
-            if (criteriaType == null)
-            {
-                return Content(HttpStatusCode.NotFound, "Data api is not found. Please check the method GetCriteriaType");
-            }
-
-            var criteria = simpleCriteriaFactory.CreateCriteria(criteriaType, queryModel);
-            if (criteria == null)
-            {
-                return Content(HttpStatusCode.NotFound, "Data api is not found. Please check the method CreateCriteria");
-            }
-
-            if (!criteria.IsValid())
-            {
-                return Content(HttpStatusCode.BadRequest, "Bad request. Invalid request message parameters");
-            }
-
-            var repository = new DynamicRepository();
-            var data = repository.Fetch<dynamic>(criteria).ToList();
-
-            var mapperService = simpleMapperFactory.GetSimpleMapperService(apiKey);
-            if (mapperService != null)
-            {
-                data.ForEach(d => mapperService.Decorate(d));
-            }
-
-            return Ok(data);
         }
 
-        [Route("update")]
-        public IHttpActionResult Update(Dictionary<string, object> queryModel)
+        var criteriaType = simpleCriteriaFactory.GetCriteriaType(apiKey);
+        if (criteriaType == null)
         {
-            queryModel = queryModel ?? new Dictionary<string, object>();
-            queryModel.SafeAdd(ParameterConfiguration.ActorId, currentSession.UserId)
-                .SafeAdd(ParameterConfiguration.ActorUsername, currentSession.Username)
-                .SafeAdd("IP", currentContext.IP);
-
-            queryModel = queryModel.CloneCaseInSensitive();
-
-            var apiKey = queryModel.ContainsKey("apikey") && queryModel["apikey"] != null ? queryModel["apikey"].ToString() : "";
-            if (string.IsNullOrEmpty(apiKey))
-            {
-                return Content(HttpStatusCode.NotFound, "apikey is empty");
-            }
-
-            var functionPermission = simpleFunctionPermissionFactory.GetFunctionPermission(apiKey);
-            if (functionPermission != null)
-            {
-                if (currentSession.UserId == 0)
-                {
-                    return Content(HttpStatusCode.Unauthorized, "You are not authorized to access this data.");
-                }
-
-                var currentPolicy = userService.GetPermission(currentSession.UserId, NapSettings.Settings.SiteId, functionPermission.Key);
-                var hasPermission = currentPolicy >= (int)functionPermission.Policy;
-                if (!hasPermission)
-                {
-                    return Content(HttpStatusCode.Unauthorized, "You are not authorized to access this data.");
-                }
-            }
-
-            var commandType = simpleCriteriaFactory.GetCommandType(apiKey);
-            if (commandType == null)
-            {
-                return Content(HttpStatusCode.NotFound, "Data api is not found. Please check the method GetCriteriaType");
-            }
-
-            var command = simpleCriteriaFactory.CreateNonQueryCommand(commandType, queryModel);
-            if (command == null)
-            {
-                return Content(HttpStatusCode.NotFound, "Data api is not found. Please check the method CreateCriteria");
-            }
-
-            if (!command.IsValid())
-            {
-                return Content(HttpStatusCode.BadRequest, "Bad request. Invalid request message parameters");
-            }
-
-            var repository = new DynamicRepository();
-            repository.Execute(command);
-            return Ok(command);
-
+            return NotFound("Data api is not found. Please check the method GetCriteriaType");
         }
+
+        var criteria = simpleCriteriaFactory.CreateCriteria(criteriaType, queryModel);
+        if (criteria == null)
+        {
+            return NotFound("Data api is not found. Please check the method CreateCriteria");
+        }
+
+        if (!criteria.IsValid())
+        {
+            return BadRequest("Bad request. Invalid request message parameters");
+        }
+
+        var repository = new DynamicRepository();
+        var data = repository.Fetch<dynamic>(criteria).ToList();
+
+        var mapperService = simpleMapperFactory.GetSimpleMapperService(apiKey);
+        if (mapperService != null)
+        {
+            data.ForEach(d => mapperService.Decorate(d));
+        }
+
+        return Ok(data);
+    }
+
+    [Route("update")]
+    public IActionResult Update(Dictionary<string, object> queryModel)
+    {
+        queryModel ??= new Dictionary<string, object>();
+        queryModel.SafeAdd(ParameterConfiguration.ActorId, napSession.UserId)
+            .SafeAdd(ParameterConfiguration.ActorUsername, napSession.UserName)
+            .SafeAdd("IP", GetClientIP());
+
+        queryModel = queryModel.CloneCaseInSensitive();
+
+        var apiKey = queryModel.ContainsKey("apikey") && queryModel["apikey"] != null ? queryModel["apikey"].ToString() : "";
+        if (string.IsNullOrEmpty(apiKey))
+        {
+            return NotFound("apikey is empty");
+        }
+
+        var functionPermission = simpleFunctionPermissionFactory.GetFunctionPermission(apiKey);
+        if (functionPermission != null)
+        {
+            if (napSession.UserId == 0)
+            {
+                return Unauthorized("You are not authorized to access this data.");
+            }
+
+            var currentPolicy = userService.GetPermission(napSession.UserId, napSettings.SiteId, functionPermission.Key);
+            var hasPermission = currentPolicy >= (int)functionPermission.Policy;
+            if (!hasPermission)
+            {
+                return Unauthorized("You are not authorized to access this data.");
+            }
+        }
+
+        var commandType = simpleCriteriaFactory.GetCommandType(apiKey);
+        if (commandType == null)
+        {
+            return NotFound("Data api is not found. Please check the method GetCriteriaType");
+        }
+
+        var command = simpleCriteriaFactory.CreateNonQueryCommand(commandType, queryModel);
+        if (command == null)
+        {
+            return NotFound("Data api is not found. Please check the method CreateCriteria");
+        }
+
+        if (!command.IsValid())
+        {
+            return BadRequest("Bad request. Invalid request message parameters");
+        }
+
+        var repository = new DynamicRepository();
+        repository.Execute(command);
+        return Ok(command);
+
+    }
+
+    private string GetClientIP()
+    {
+        var clientIP = HttpContext.Request?.Headers["x-forwarded-for"].ToString();
+        if (string.IsNullOrWhiteSpace(clientIP))
+        {
+            clientIP = HttpContext?.Connection?.RemoteIpAddress?.ToString();
+        }
+
+        return clientIP;
     }
 }

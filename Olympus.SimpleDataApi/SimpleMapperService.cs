@@ -1,7 +1,6 @@
-﻿namespace Olympus.SimpleDataApi
+﻿namespace Olympus.SimpleDataApi;
+
+public interface SimpleMapperService
 {
-    public interface SimpleMapperService
-    {
-        void Decorate(dynamic obj);
-    }
+    void Decorate(dynamic obj);
 }

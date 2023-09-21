@@ -1,11 +1,10 @@
-﻿namespace Olympus.SimpleDataApi
+﻿namespace Olympus.SimpleDataApi;
+
+using Fanex.NAP.Client.Helpers.Business;
+
+public class FunctionPermission
 {
-    using Fanex.NAP.Core.Business;
+    public string Key { get; set; }
 
-    public class FunctionPermission
-    {
-        public string Key { get; set; }
-
-        public Constant.Policy Policy { get; set; }
-    }
+    public Constant.Policy Policy { get; set; }
 }

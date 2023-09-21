@@ -13,13 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olympus.FPSAPI.Client", "Ol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olympus.HttpLogger", "Olympus.HttpLogger\Olympus.HttpLogger.csproj", "{DCDB6315-699D-4DAA-9867-F21940181784}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olympus.SimpleDataApi", "Olympus.SimpleDataApi\Olympus.SimpleDataApi.csproj", "{28567474-8718-4C61-B587-110176467441}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyUnitTests", "MyUnitTests\MyUnitTests.csproj", "{4B673531-F2BF-490F-B983-AFA6A036A84B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWeb", "TestWeb\TestWeb.csproj", "{E40C7EE5-0817-4EFD-A9AA-DE52F0B85B30}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olympus.SimpleDataApi.AspNetCore", "Olympus.SimpleDataApi.AspNetCore\Olympus.SimpleDataApi.AspNetCore.csproj", "{B905CC70-B896-4DE5-8377-5459BE098CF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olympus.SimpleDataApi", "Olympus.SimpleDataApi\Olympus.SimpleDataApi.csproj", "{B905CC70-B896-4DE5-8377-5459BE098CF9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAspNetCore", "TestAspNetCore\TestAspNetCore.csproj", "{C367CFCF-72A2-4CBF-BD38-23D1B8FAD3C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDataApi.UnitTests", "SimpleDataApi.UnitTests\SimpleDataApi.UnitTests.csproj", "{B2E2FDA4-8A9E-46D3-A434-9C36707C0F3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +49,6 @@ Global
 		{DCDB6315-699D-4DAA-9867-F21940181784}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCDB6315-699D-4DAA-9867-F21940181784}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCDB6315-699D-4DAA-9867-F21940181784}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28567474-8718-4C61-B587-110176467441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28567474-8718-4C61-B587-110176467441}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28567474-8718-4C61-B587-110176467441}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28567474-8718-4C61-B587-110176467441}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4B673531-F2BF-490F-B983-AFA6A036A84B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B673531-F2BF-490F-B983-AFA6A036A84B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B673531-F2BF-490F-B983-AFA6A036A84B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +61,14 @@ Global
 		{B905CC70-B896-4DE5-8377-5459BE098CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B905CC70-B896-4DE5-8377-5459BE098CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B905CC70-B896-4DE5-8377-5459BE098CF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C367CFCF-72A2-4CBF-BD38-23D1B8FAD3C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C367CFCF-72A2-4CBF-BD38-23D1B8FAD3C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C367CFCF-72A2-4CBF-BD38-23D1B8FAD3C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C367CFCF-72A2-4CBF-BD38-23D1B8FAD3C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E2FDA4-8A9E-46D3-A434-9C36707C0F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E2FDA4-8A9E-46D3-A434-9C36707C0F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E2FDA4-8A9E-46D3-A434-9C36707C0F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E2FDA4-8A9E-46D3-A434-9C36707C0F3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
