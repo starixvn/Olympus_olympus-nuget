@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Functions>
-  <Function Name="Common">
-    <Setting Key="JacobReturnTableAndOutput" SpName="JacobReturnTableAndOutput" DbName="DBOWP.bodb_OWP.bodbOWPNet" />
-    <Setting Key="JacobReturn2TableAndOutput" SpName="JacobReturn2TableAndOutput" DbName="DBOWP.bodb_OWP.bodbOWPNet" />
-    <Setting Key="JacobReturnOutputAndRandomTable" SpName="JacobReturnOutputAndRandomTable" DbName="DBOWP.bodb_OWP.bodbOWPNet" />
-  </Function>
-</Functions>
